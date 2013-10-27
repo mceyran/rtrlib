@@ -35,12 +35,12 @@
  * @param data
  */
 typedef struct lpfst_node_t {
-    ip_addr prefix;
-    uint8_t len;
-    struct lpfst_node_t *rchild;
-    struct lpfst_node_t *lchild;
-    struct lpfst_node_t *parent;
-    void *data;
+	ip_addr prefix;
+	uint8_t len;
+	struct lpfst_node_t *rchild;
+	struct lpfst_node_t *lchild;
+	struct lpfst_node_t *parent;
+	void *data;
 } lpfst_node;
 
 /**
@@ -49,34 +49,45 @@ typedef struct lpfst_node_t {
  * @param[in] new_node Node that will be inserted.
  * @param[in] level Level of the the root node in the tree.
  */
-void lpfst_insert(lpfst_node *root, lpfst_node *new_node, const unsigned int level);
+void lpfst_insert(lpfst_node *root, lpfst_node *new_node,
+		  const unsigned int level);
 
 /**
  * @brief Searches for the node with the longest prefix, matching the passed ip prefix and prefix length.
  * @param[in] root_node Node were the lookup process starts.
  * @param[in] ip_addr IP-Prefix.
  * @param[in] mask_len Length of the network mask of the prefix.
- * @param[in,out] level of the the node root in the tree. Is set to the level of the node that is returned.
- * @returns A The lpfst_node with the longest prefix in the tree matching the passed ip prefix and prefix length.
- * @returns NULL if no node that matches the passed prefix and prefix length could be found.
+ * @param[in,out] level of the the node root in the tree. Is set to the level
+ *		  of the node that is returned.
+ * @returns A The lpfst_node with the longest prefix in the tree matching the
+ *	    passed ip prefix and prefix length.
+ * @returns NULL if no node that matches the passed prefix and prefix length
+ *		 could be found.
  */
-lpfst_node *lpfst_lookup(const lpfst_node *root_node, const ip_addr *prefix, const uint8_t mask_len,  unsigned int *level);
+lpfst_node *lpfst_lookup(const lpfst_node *root_node, const ip_addr *prefix,
+			 const uint8_t mask_len, unsigned int *level);
 
 /**
  * @brief Search for a node with the same prefix and prefix length.
  * @param[in] root_node Node were the lookup process starts.
  * @param[in] ip_addr IP-Prefix.
  * @param[in] mask_len Length of the network mask of the prefix.
- * @param[in,out] level of the the node root in the tree. Is set to the level of the node that is returned.
- * @param[in] found Is true if a node which matches could be found else found is set to false.
+ * @param[in,out] level of the the node root in the tree. Is set to the level
+ *		  of the node that is returned.
+ * @param[in] found Is true if a node which matches could be found else found
+ *	      is set to false.
  * @return A node which matches the passed parameter (found==true).
- * @return the parent of the node where the lookup operation stopped (found==false).
+ * @return the parent of the node where the lookup operation stopped
+ *	   (found==false).
  * @return NULL if root_node is NULL.
 */
-lpfst_node *lpfst_lookup_exact(lpfst_node *root_node, const ip_addr *prefix, const uint8_t mask_len, unsigned int *level, bool *found);
+lpfst_node *lpfst_lookup_exact(lpfst_node *root_node, const ip_addr *prefix,
+			       const uint8_t mask_len, unsigned int *level,
+			       bool *found);
 
 /**
- * @brief Removes the node with the passed IP prefix and mask_len from the tree.
+ * @brief Removes the node with the passed IP prefix and mask_len from the
+ *	  tree.
  * @param[in] root Node were the inserting process starts.
  * @param[in] prefix Prefix that will removed from the tree.
  * @param[in] mask_len Length of the network mask of the prefix.
@@ -84,7 +95,8 @@ lpfst_node *lpfst_lookup_exact(lpfst_node *root_node, const ip_addr *prefix, con
  * @returns Node that was removed from the tree.
  * @returns NULL If the Prefix could'nt be found in the tree.
  */
-lpfst_node *lpfst_remove(lpfst_node *root_node, const ip_addr *prefix, const uint8_t mask_len, const unsigned int level);
+lpfst_node *lpfst_remove(lpfst_node *root_node, const ip_addr *prefix,
+			 const uint8_t mask_len, const unsigned int level);
 
 /**
  * @brief Detects if a node is a leaf in tree.
@@ -94,5 +106,6 @@ lpfst_node *lpfst_remove(lpfst_node *root_node, const ip_addr *prefix, const uin
  */
 int lpfst_is_leaf(const lpfst_node *node);
 
-int lpfst_get_children(const lpfst_node *root_node, lpfst_node ***array, unsigned int *len);
+int lpfst_get_children(const lpfst_node *root_node, lpfst_node ***array,
+		       unsigned int *len);
 #endif

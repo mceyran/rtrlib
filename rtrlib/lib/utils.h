@@ -34,13 +34,17 @@
 int rtr_get_monotonic_time(time_t *seconds);
 
 /**
- * @brief Extracts number bits from the passed uint32_t, starting at bit number from. The bit with the highest
- * significance is bit 0. All bits that aren't in the specified range will be 0.
+ * @brief Extracts number bits from the passed uint32_t, starting at bit number
+ *	  from. The bit with the highest
+ *	  significance is bit 0. All bits that aren't in the specified range
+ *	  will be 0.
  * @param[in] val uint32_t
  * @param[in] from Position of the first bit that is extracted.
  * @param[in] number How many bits will be extracted.
- * @returns a uint32_t, where all bits that aren't in the specified range are set to 0.
+ * @returns a uint32_t, where all bits that aren't in the specified range are
+ *          set to 0.
 */
-uint32_t rtr_get_bits(const uint32_t val, const uint8_t from, const uint8_t number);
+uint32_t rtr_get_bits(const uint32_t val, const uint8_t from,
+		      const uint8_t number);
 
 #endif

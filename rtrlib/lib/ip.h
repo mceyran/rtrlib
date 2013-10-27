@@ -25,16 +25,15 @@
 #include "rtrlib/lib/ipv4.h"
 #include "rtrlib/lib/ipv6.h"
 
-
 /**
  * @brief Version of the IP protocol.
  */
 typedef enum {
     /** IPV4 */
-    IPV4,
+	IPV4,
 
     /** IPV6 */
-    IPV6
+	IPV6
 } ip_version;
 
 /**
@@ -43,11 +42,11 @@ typedef enum {
  * @param u Union holding a ipv4_addr or ipv6_addr.
  */
 typedef struct {
-    ip_version ver;
-    union {
-        ipv4_addr addr4;
-        ipv6_addr addr6;
-    } u;
+	ip_version ver;
+	union {
+		ipv4_addr addr4;
+		ipv6_addr addr6;
+	} u;
 } ip_addr;
 
 /**
@@ -59,14 +58,17 @@ typedef struct {
 bool ip_addr_is_zero(const ip_addr);
 
 /**
- * @brief Extracts number bits from the passed ip_addr, starting at bit number from. The bit with the highest
- * significance is bit 0. All bits that aren't in the specified range will be 0.
+ * @brief Extracts number bits from the passed ip_addr, starting at bit number
+ *	  from. The bit with the highest significance is bit 0. All bits that
+ *	  aren't in the specified range will be 0.
  * @param[in] val ip_addr
  * @param[in] from Position of the first bit that is extracted.
  * @param[in] number How many bits will be extracted.
- * @returns An ipv4_addr, where all bits that aren't in the specified range are set to 0.
+ * @returns An ipv4_addr, where all bits that aren't in the specified range are
+ *	    set to 0.
 */
-ip_addr ip_addr_get_bits(const ip_addr *val, const uint8_t from, const uint8_t number);
+ip_addr ip_addr_get_bits(const ip_addr *val, const uint8_t from,
+			 const uint8_t number);
 
 /**
  * @defgroup util_h Utility functions
@@ -83,8 +85,10 @@ bool ip_addr_equal(const ip_addr a, const ip_addr b);
 /**
  * Converts the passed ip_addr struct to string representation.
  * @param[in] ip ip_addr
- * @param[out] str Pointer to a char array. The array must be at least INET_ADDRSTRLEN bytes long if the passed ip_addr stores
- * an IPv4 address. If ip_addr stores an IPv6 address, str must be at least INET6_ADDRSTRLEN bytes long.
+ * @param[out] str Pointer to a char array. The array must be at least
+ *	       INET_ADDRSTRLEN bytes long if the passed ip_addr stores an IPv4
+ *	       address. If ip_addr stores an IPv6 address, str must be at least
+ *	       INET6_ADDRSTRLEN bytes long.
  * @param[in] len Length of the str array.
  * @result 0 On success.
  * @result -1 On error.

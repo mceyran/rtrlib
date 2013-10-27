@@ -28,14 +28,15 @@
 #include "rtrlib/rtr/rtr.h"
 
 static const uint8_t RTR_PROTOCOL_VERSION = 0;
-static const unsigned int RTR_MAX_PDU_LEN = 3248; //error pdu: header(8) + len(4) + ipv6_pdu(32) + len(4) + 400*8 (400 char text)
+static const unsigned int RTR_MAX_PDU_LEN = 3248;	//error pdu: header(8) + len(4) + ipv6_pdu(32) + len(4) + 400*8 (400 char text)
 static const unsigned int RTR_RECV_TIMEOUT = 60;
 static const unsigned int RTR_SEND_TIMEOUT = 60;
 
-void rtr_change_socket_state(rtr_socket *rtr_socket, const rtr_socket_state new_state);
-int rtr_sync(rtr_socket *rtr_socket);
-int rtr_wait_for_sync(rtr_socket *rtr_socket);
-int rtr_send_serial_query(rtr_socket *rtr_socket);
-int rtr_send_reset_query(rtr_socket *rtr_socket);
+void rtr_change_socket_state(rtr_socket * rtr_socket,
+			     const rtr_socket_state new_state);
+int rtr_sync(rtr_socket * rtr_socket);
+int rtr_wait_for_sync(rtr_socket * rtr_socket);
+int rtr_send_serial_query(rtr_socket * rtr_socket);
+int rtr_send_reset_query(rtr_socket * rtr_socket);
 
 #endif

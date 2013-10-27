@@ -31,24 +31,27 @@
 #include <string.h>
 #include "rtrlib/lib/utils.h"
 
-int rtr_get_monotonic_time(time_t *seconds) {
-    struct timespec time;
-    if(clock_gettime(CLOCK_MONOTONIC, &time) == -1)
-        return -1;
-    *seconds = time.tv_sec;
-    if((time.tv_nsec *  1000000000) >=5)
-        *seconds +=1;
-    return 0;
+int rtr_get_monotonic_time(time_t *seconds)
+{
+	struct timespec time;
+	if (clock_gettime(CLOCK_MONOTONIC, &time) == -1)
+		return -1;
+	*seconds = time.tv_sec;
+	if ((time.tv_nsec * 1000000000) >= 5)
+		*seconds += 1;
+	return 0;
 }
 
-uint32_t rtr_get_bits(const uint32_t val, const uint8_t from, const uint8_t number) {
-    assert(number < 33);
-    assert(number > 0);
+uint32_t rtr_get_bits(const uint32_t val, const uint8_t from,
+		      const uint8_t number)
+{
+	assert(number < 33);
+	assert(number > 0);
 
-    uint32_t mask = ~0;
-    if(number != 32)
-        mask = ~(mask >> number);
+	uint32_t mask = ~0;
+	if (number != 32)
+		mask = ~(mask >> number);
 
-    mask >>= from;
-    return (mask & val);
+	mask >>= from;
+	return mask & val;
 }

@@ -30,21 +30,25 @@
  * @param addr The IPv4 address.
  */
 typedef struct {
-    uint32_t addr;
+	uint32_t addr;
 } ipv4_addr;
 
 /**
- * @brief Extracts number bits from the passed ipv4_addr, starting at bit number from. The bit with the highest
- * significance is bit 0. All bits that aren't in the specified range will be 0.
+ * @brief Extracts number bits from the passed ipv4_addr, starting at bit
+ *	  number from. The bit with the highest significance is bit 0. All bits
+ *	  that aren't in the specified range will be 0.
  * @param[in] val ipv4_addr
  * @param[in] from Position of the first bit that is extracted.
  * @param[in] number How many bits will be extracted.
- * @returns An ipv4_addr, where all bits that aren't in the specified range are set to 0.
+ * @returns An ipv4_addr, where all bits that aren't in the specified range are
+ *	    set to 0.
 */
-ipv4_addr ipv4_get_bits(const ipv4_addr *val, const uint8_t from, const uint8_t number);
+ipv4_addr ipv4_get_bits(const ipv4_addr *val, const uint8_t from,
+			const uint8_t number);
 
 /**
- * Converts the passed IPv4 address in string representation to an ipv4_addr struct.
+ * @brief Converts the passed IPv4 address in string representation to an
+ *	  struct ipv4_addr.
  * @param[in] str Pointer to a string buffer.
  * @param[out] ip ipv4_addr
  * @result 0 on success
@@ -55,7 +59,8 @@ int ipv4_str_to_addr(const char *str, ipv4_addr *ip);
 /**
  * Converts the passed ipv4_addr to string representation.
  * @param[in] ip ipv4_addr
- * @param[out] str Pointer to a string buffer must be at least INET_ADDRSTRLEN bytes long.
+ * @param[out] str Pointer to a string buffer must be at least INET_ADDRSTRLEN
+ *	       bytes long.
  * @result 0 on success
  * @result -1 on error
 */
